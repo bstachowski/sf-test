@@ -13,7 +13,8 @@ class DefaultController extends AbstractController
      */
     public function index()
     {
-        $blehs = ['ble1','ble2'];
+//        $blehs = ['ble1','ble2'];
+
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
             'blehs' => $blehs,
