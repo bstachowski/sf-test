@@ -19,7 +19,7 @@
 
     <ul>
     {% for bleh in blehs %}
-        <li>{{ bleh }}</li>
+        <li>{{ bleh_items[loop.index0] }} is {{ bleh.name }}</li>
     {% endfor %}
     </ul>
 
