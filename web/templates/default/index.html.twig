@@ -9,7 +9,7 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Hello {{ controller_name|upper }}! ✅</h1>
 
     This friendly message is coming from:
     <ul>
@@ -17,11 +17,11 @@
         <li>Your template at <code><a href="{{ '/home/bst/workspace/test/web/templates/default/index.html.twig'|file_link(0) }}">templates/default/index.html.twig</a></code></li>
     </ul>
 
-    <ul>
-    {% for bleh in blehs %}
-        <li>{{ bleh_items[loop.index0] }} is {{ bleh.name }}</li>
-    {% endfor %}
-    </ul>
+{#    <ul>#}
+{#    {% for bleh in blehs %}#}
+{#        <li>{{ bleh_items[loop.index0] }} is {{ bleh.name }}</li>#}
+{#    {% endfor %}#}
+{#    </ul>#}
 
 </div>
 {% endblock %}

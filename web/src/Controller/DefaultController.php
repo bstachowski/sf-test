@@ -19,24 +19,21 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/default", name="default")
+     * @Route("/home", name="default", name="home")
      */
     public function index(ItemsService $items, Request $request)
     {
-//        $blehs = ['ble1','ble2'];
 
-//        ### db save ###
-/*      $entityManager = $this -> getDoctrine() -> getManager();
-        $blehs1 = new Blehs;
-        $blehs1 -> setName("ugleh3");
+        $entityManager = $this -> getDoctrine() -> getManager();
 
-        $blehs2 = new Blehs;
-        $blehs2 -> setName("ugleh4");
+        $blehs1 = new Blehs();
+        $blehs1 -> setName("good");
 
         $entityManager -> persist($blehs1);
-        $entityManager -> persist($blehs2);
         $entityManager -> flush();
-*/
+
+        dump ('saved '. $blehs1->getId());
+
         $blehs = $this -> getDoctrine() -> getRepository(Blehs::class) -> findAll();
 
         if (!$blehs) {
