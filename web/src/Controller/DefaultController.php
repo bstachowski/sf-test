@@ -14,8 +14,11 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class DefaultController extends AbstractController
 {
+
+
     public function __construct($logger) {
         // logger service
+
     }
 
     /**
@@ -23,16 +26,17 @@ class DefaultController extends AbstractController
      */
     public function index(ItemsService $items, Request $request)
     {
+        dump("ble");
 
-        $entityManager = $this -> getDoctrine() -> getManager();
-
-        $blehs1 = new Blehs();
-        $blehs1 -> setName("good");
-
-        $entityManager -> persist($blehs1);
-        $entityManager -> flush();
-
-        dump ('saved '. $blehs1->getId());
+//        $entityManager = $this -> getDoctrine() -> getManager();
+//
+//        $blehs1 = new Blehs();
+//        $blehs1 -> setName("good");
+//
+//        $entityManager -> persist($blehs1);
+//        $entityManager -> flush();
+//
+//        dump ('saved '. $blehs1->getId());
 
         $blehs = $this -> getDoctrine() -> getRepository(Blehs::class) -> findAll();
 
@@ -56,40 +60,10 @@ class DefaultController extends AbstractController
         $res -> send();
 
 
-//        return $this->json(['username'=>'ble']);
-
-//        return new Response("ble");
-
-//        return new Response($var);
 
 //        return $this->redirectToRoute('default2');
     }
 
-//    /**
-//     * @Route("/blog/{page?}", name="blog_list", requirements={"page"="\d+"})
-//     */
-//    public function index2() {
-//
-//        return new Response("Route 2");
-//
-//    }
-
-//    /**
-//     * @Route("/articles/{locale}/{year}/{slug}/{category}",
-//     *     defaults={"category":"computers"},
-//     *     name="blog_list",
-//     *     requirements={
-//         *     "locale":"en|fr",
-//         *     "page"="\d+",
-//         *     "category":"computers|rtv",
-//         *     "year":"\d+" }
-//     *     )
-//     */
-//    public function index3() {
-//
-//        return new Response("Route 3");
-//
-//    }
 
     /**
     * @Route("/generate_url/{param?}", name="generate_url")
