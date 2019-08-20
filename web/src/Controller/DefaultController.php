@@ -24,9 +24,19 @@ class DefaultController extends AbstractController
     /**
      * @Route("/home", name="default", name="home")
      */
-    public function index(ItemsService $items, Request $request)
-    {
+    public function index(ItemsService $items, Request $request) {
         dump("ble");
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $conn = $entityManager -> getConnection();
+
+        $sql = '
+        INSERT INTO blehs(name) VALUES (:num)
+        ';
+
+        $q = $conn -> prepare($sql);
+        $q -> execute(['num' => 1]);
+
 
 //        $entityManager = $this -> getDoctrine() -> getManager();
 //
@@ -62,6 +72,15 @@ class DefaultController extends AbstractController
 
 
 //        return $this->redirectToRoute('default2');
+    }
+
+
+    /**
+     * @Route("/paramconv/{id}", name="paramconv")
+     */
+
+    public function paramconv(Blehs $blehs) {
+        dump($blehs);
     }
 
 
