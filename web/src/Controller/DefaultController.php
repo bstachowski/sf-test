@@ -67,7 +67,10 @@ class DefaultController extends AbstractController
             'bleh_items' => $items -> items,
         ] );
         $res -> headers -> setCookie($cookie);
-        $res -> send();
+        //$res -> send();
+
+
+        return $res;
 
 
 
