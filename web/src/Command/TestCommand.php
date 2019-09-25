@@ -4,6 +4,7 @@
 namespace App\Command;
 
 use App\Entity\Messages;
+use Doctrine\DBAL\Connection;
 use Psr\Container\ContainerInterface;
 use Swift_Mailer;
 use Symfony\Component\Console\Command\Command;
@@ -24,12 +25,12 @@ class TestCommand extends Command {
         $this->mailer = $mailer;
     }
 
-    private $connection;
+    private $container;
 
-    public function __construct2(Connection $connection)
+    public function __construct2(ContainerInterface $container)
     {
-        $this->connection = $connection;
-        parent::__construct();
+        parent::__construct2();
+        $this->container = $container;
     }
 
 
@@ -58,12 +59,24 @@ class TestCommand extends Command {
         $this->mailer->send($message);
 
 
+        $em = $this->container->get('doctrine')->getManager();
+        $conn = $em -> getConnection();
+
         $sql = ('
             INSERT INTO messages(message_from, message_to, message_title, message_content, created_at, delivered_at, status)
             VALUES (:from, :to, :title, :content, :created, :delivered, :status)
         ');
 
-        $this->connection->prepare
+        $this->$conn->prepare($sql);
+        $this->execute([
+            'from' => $input->getArgument('from'),
+            'to' => $input->getArgument('to'),
+            'title' => 'test',
+            'content' => 'test',
+            'created' => date('H:i:s \O\n d/m/Y'),
+            'delivered' => date('H:i:s \O\n d/m/Y'),
+            'status' => '1'
+        ]);
 
 
     }
